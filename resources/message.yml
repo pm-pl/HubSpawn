@@ -1,0 +1,35 @@
+# =================
+# Dont change this!
+# =================
+version-message: 1.0
+
+# AVAILABLE TAGS
+# {PREFIX} for Prefix
+# {NAME} for Player name
+# {WORLDNAME} for World Name
+# {X} for X
+# {Y} for Y
+# {Z} for Z
+indonesian:
+  name: "Indonesia"
+
+  spawn-teleport: "{PREFIX} §aHay {NAME}, §eSelamat datang di spawn!"
+  hub-teleport: "{PREFIX} §aHay {NAME}, §eSelamat datang di lobby!"
+
+  spawn-set: "{PREFIX} §aSpawn berhasil di set!"
+  hub-set: "{PREFIX} §aHub berhasil di set!"
+
+  spawn-reset: "{PREFIX} §aSpawn berhasil di reset!"
+  hub-reset: "{PREFIX} §aHub berhasil di reset!"
+
+english:
+  name: "English"
+
+  spawn-teleport: "{PREFIX} §aHi {NAME}, §eWelcome back to spawn!"
+  hub-teleport: "{PREFIX} §aHi {NAME}, §eWelcome back to lobby!"
+
+  spawn-set: "{PREFIX} §aNew spawn successfully setted!"
+  hub-set: "{PREFIX} §aNew hub spawn successfully setted!"
+
+  spawn-reset: "{PREFIX} §aSpawn successfully resetted!"
+  hub-reset: "{PREFIX} §aHub spawn successfully resetted!"

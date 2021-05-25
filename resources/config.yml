@@ -1,0 +1,27 @@
+# =================
+# Dont change this!
+# =================
+config-version: 1.0
+
+# Now available only
+# ID: Indonesia
+# ENG: English
+language: "ENG"
+
+commands-settings:
+  hubspawn:
+    name: "hubspawn"
+    aliases:
+      - "hubspawnadmin"
+    description: "Set the spawn or lobby with this command"
+
+  spawn:
+    name: "spawn"
+    aliases: []
+    description: "Teleport to default spawn"
+
+  hub:
+    name: "hub"
+    aliases:
+      - "lobby"
+    description: "Teleport to default lobby"

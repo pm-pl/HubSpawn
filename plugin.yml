@@ -1,0 +1,18 @@
+name: HubSpawn
+main: pedhot\hubspawn\HubSpawn
+api: 3.0.0
+version: 1.0
+author: PedhotDev
+
+permissions:
+  hubspawn.admin:
+    default: op
+    description: "Allow to use /hubspawn command"
+
+  hubspawn.hub:
+    default: true
+    description: "Allow to use /hub command"
+
+  hubspawn.spawn:
+    default: true
+    description: "Allow to use /spawn command"
