@@ -1,0 +1,13 @@
+--- # Poggit-CI Manifest. Open the CI at https://poggit.pmmp.io/ci/Pedhot-Dev/HubSpawn
+build-by-default: true
+branches:
+- master
+projects:
+  HubSpawn:
+    path: ""
+    libs:
+      - src: Ifera/ConfigUpdater/ConfigUpdater
+        version: ^1.1.0
+      - src: CortexPE/Commando/Commando
+        version: ^2.1.0
+...
