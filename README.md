@@ -8,12 +8,9 @@ Teleport to hub easyly
 - Teleport to Spawn
 - With permission (default/OP)
 
-# Commands
-- /hubspawn <sethub | setspawn | resethub | resetspawn>
-- /hub
-- /spawn
-
-# Permissions
-- hubspawn.admin (to use /hubspawn command)
-- hubspawn.hub   (to use /hub command)
-- hubspawn.spawn (to use /spawn command)
+# Commands & Permissions
+| Commands  | Permissions | Informations |
+| ------------- | ------------- | ------------- |
+| /hubspawn  | hubspawn.admin  | Admin only  |
+| /hub  | hubspawn.hub  | For all players  |
+| /spawn  | hubspawn.spawn  | For all players  |
