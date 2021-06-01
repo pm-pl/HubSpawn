@@ -55,7 +55,7 @@ class HubSpawnCommand extends BaseCommand
             return;
         }
         if(count($args) < 1){
-            $sender->sendMessage(new TranslationContainer("commands.generic.usage", ["/hubspawn <sethub | setspawn | resethub | resetspawn>"]));
+            $sender->sendMessage(new TranslationContainer("commands.generic.usage", ["/hubspawn <sethub | setspawn | resethub | resetspawn | info>"]));
             return;
         }
         switch ($args[0]) {
@@ -74,6 +74,9 @@ class HubSpawnCommand extends BaseCommand
             case "resetspawn":
                 HubSpawn::reset("spawn");
                 $sender->sendMessage(HubSpawn::formatter($sender, HubSpawn::getInstance()->getMessage()->getNested(HubSpawn::getInstance()->getSelectedLang().".spawn-reset")));
+                break;
+            case "info":
+                $sender->sendMessage("§aAuthor: §bPedhotDev\n§aLanguage: §bEnglish");
                 break;
         }
     }
