@@ -70,8 +70,6 @@ class HubSpawn extends PluginBase
         $this->checkConfig();
         $this->registerAllCommands();
 
-        $this->getLogger()->info("Plugin Enabled!, Selected language ".ucfirst($this->getSelectedLang()));
-
         self::$data = new Config($this->getDataFolder()."data.yml");
         self::$message = new Config($this->getDataFolder()."message.yml");
     }
