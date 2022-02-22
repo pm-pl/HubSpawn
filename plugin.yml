@@ -1,6 +1,6 @@
 name: HubSpawn
 main: pedhot\hubspawn\HubSpawn
-api: 3.0.0
+api: 4.0.0
 version: 1.0
 author: PedhotDev
 

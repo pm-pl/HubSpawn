@@ -36,11 +36,11 @@ use JackMD\ConfigUpdater\ConfigUpdater;
 use pedhot\hubspawn\command\HubCommand;
 use pedhot\hubspawn\command\HubSpawnCommand;
 use pedhot\hubspawn\command\SpawnCommand;
-use pocketmine\level\Position;
-use pocketmine\Player;
+use pocketmine\player\Player;
 use pocketmine\plugin\PluginBase;
 use pocketmine\Server;
 use pocketmine\utils\Config;
+use pocketmine\world\Position;
 
 class HubSpawn extends PluginBase
 {
@@ -57,13 +57,13 @@ class HubSpawn extends PluginBase
         return self::$instance;
     }
 
-    public function onLoad() {
+    protected function onLoad(): void {
         self::$instance = $this;
 
         $this->selectedLang = str_replace(["ID", "ENG"], ["indonesian", "english"], $this->getConfig()->get("language"));
     }
 
-    public function onEnable() {
+    protected function onEnable(): void {
         $this->saveDefaultConfig();
         $this->saveResource("message.yml");
         $this->saveResource("data.yml");
@@ -106,6 +106,8 @@ class HubSpawn extends PluginBase
     /**
      * @param string $type
      * @param Position $pos
+     * @return void
+     * @throws \JsonException
      */
     public static function set(string $type, Position $pos): void {
         if (!in_array($type, ["spawn", "hub"])) {
@@ -114,12 +116,14 @@ class HubSpawn extends PluginBase
         self::$data->setNested($type.".x", $pos->getX());
         self::$data->setNested($type.".y", $pos->getY());
         self::$data->setNested($type.".z", $pos->getZ());
-        self::$data->setNested($type.".world-name", $pos->getLevel()->getFolderName());
+        self::$data->setNested($type.".world-name", $pos->getWorld()->getFolderName());
         self::$data->save();
     }
 
     /**
      * @param string $type
+     * @return void
+     * @throws \JsonException
      */
     public static function reset(string $type): void {
         if (!in_array($type, ["spawn", "hub"])) {
@@ -128,7 +132,7 @@ class HubSpawn extends PluginBase
         self::$data->setNested($type.".x", 0);
         self::$data->setNested($type.".y", 0);
         self::$data->setNested($type.".z", 0);
-        self::$data->setNested($type.".world-name", Server::getInstance()->getDefaultLevel()->getFolderName());
+        self::$data->setNested($type.".world-name", Server::getInstance()->getWorldManager()->getDefaultWorld()->getFolderName());
         self::$data->save();
     }
 
@@ -137,7 +141,7 @@ class HubSpawn extends PluginBase
      * @return Position
      */
     public static function teleportTo(string $type): Position {
-        return new Position(self::$data->getNested($type.".x"),self::$data->getNested($type.".y"),self::$data->getNested($type.".z"), Server::getInstance()->getLevelByName(self::$data->getNested($type.".world-name")));
+        return new Position(self::$data->getNested($type.".x"),self::$data->getNested($type.".y"),self::$data->getNested($type.".z"), Server::getInstance()->getWorldManager()->getWorldByName(self::$data->getNested($type.".world-name")) ?? Server::getInstance()->getWorldManager()->getDefaultWorld());
     }
 
     /**
@@ -146,7 +150,7 @@ class HubSpawn extends PluginBase
      * @return string
      */
     public static function formatter(Player $player, string $text): string {
-        return (string)str_replace(["{PREFIX}", "{NAME}", "{WORLDNAME}", "{X}", "{Y}", "{Z}"], ["§l§b[§aHub§eSpawn§b] §r", $player->getName(), $player->getLevel()->getFolderName(), $player->getX(), $player->getY(), $player->getZ()], $text);
+        return (string)str_replace(["{PREFIX}", "{NAME}", "{WORLDNAME}", "{X}", "{Y}", "{Z}"], ["§l§b[§aHub§eSpawn§b] §r", $player->getName(), $player->getWorld()->getFolderName(), $player->getPosition()->getX(), $player->getPosition()->getY(), $player->getPosition()->getZ()], $text);
     }
 
 }
