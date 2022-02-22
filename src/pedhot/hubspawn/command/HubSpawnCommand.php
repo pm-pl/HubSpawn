@@ -35,11 +35,11 @@ namespace pedhot\hubspawn\command;
 use CortexPE\Commando\BaseCommand;
 use pedhot\hubspawn\HubSpawn;
 use pocketmine\command\CommandSender;
-use pocketmine\lang\TranslationContainer;
-use pocketmine\level\Position;
-use pocketmine\Player;
+use pocketmine\lang\Translatable;
+use pocketmine\player\Player;
 use pocketmine\Server;
 use pocketmine\utils\TextFormat;
+use pocketmine\world\Position;
 
 class HubSpawnCommand extends BaseCommand
 {
@@ -55,16 +55,16 @@ class HubSpawnCommand extends BaseCommand
             return;
         }
         if(count($args) < 1){
-            $sender->sendMessage(new TranslationContainer("commands.generic.usage", ["/hubspawn <sethub | setspawn | resethub | resetspawn | info>"]));
+            $sender->sendMessage(new Translatable("commands.generic.usage", ["/hubspawn <sethub | setspawn | resethub | resetspawn | info>"]));
             return;
         }
         switch ($args[0]) {
             case "sethub":
-                HubSpawn::set("hub", new Position($sender->getX(), $sender->getY(), $sender->getZ(), $sender->getLevel()));
+                HubSpawn::set("hub", new Position($sender->getPosition()->getX(), $sender->getPosition()->getY(), $sender->getPosition()->getZ(), $sender->getWorld()));
                 $sender->sendMessage(HubSpawn::formatter($sender, HubSpawn::getInstance()->getMessage()->getNested(HubSpawn::getInstance()->getSelectedLang().".hub-set")));
                 break;
             case "setspawn":
-                HubSpawn::set("spawn", new Position($sender->getX(), $sender->getY(), $sender->getZ(), $sender->getLevel()));
+                HubSpawn::set("spawn", new Position($sender->getPosition()->getX(), $sender->getPosition()->getY(), $sender->getPosition()->getZ(), $sender->getWorld()));
                 $sender->sendMessage(HubSpawn::formatter($sender, HubSpawn::getInstance()->getMessage()->getNested(HubSpawn::getInstance()->getSelectedLang().".spawn-set")));
                 break;
             case "resethub":

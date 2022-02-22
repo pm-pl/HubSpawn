@@ -35,7 +35,7 @@ namespace pedhot\hubspawn\command;
 use CortexPE\Commando\BaseCommand;
 use pedhot\hubspawn\HubSpawn;
 use pocketmine\command\CommandSender;
-use pocketmine\Player;
+use pocketmine\player\Player;
 use pocketmine\Server;
 use pocketmine\utils\TextFormat;
 
